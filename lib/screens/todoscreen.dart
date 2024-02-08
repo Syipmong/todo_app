@@ -102,10 +102,6 @@ class _ToDoScreenState extends State<ToDoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Todo List',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         centerTitle: true,
         backgroundColor: Colors.deepPurple[400],
@@ -124,6 +120,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
             },
           ),
         ],
+        title: const Text(
+          'Todo List',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),

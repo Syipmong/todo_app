@@ -1,5 +1,3 @@
-// settings_screen.dart
-
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -17,7 +15,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text('Settings'), // 'child' argument is placed last
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
