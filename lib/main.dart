@@ -15,6 +15,7 @@ class TodoApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
       routes: {
         '/home': (context) => const HomeScreen(),
