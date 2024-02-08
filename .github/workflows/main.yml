@@ -1,0 +1,8 @@
+  - name: Builds - build Flutter APK and create github release
+  # You may pin to the exact commit or the version.
+  # uses: Dank-del/flutter-build-and-publish-action@32b96a7cef73377fbb92daa41932455b0fadaeef
+    uses: Dank-del/flutter-build-and-publish-action@v1
+      with:
+        # The build target to use
+        matrix-target: # default is apk --split-per-abi
+          
