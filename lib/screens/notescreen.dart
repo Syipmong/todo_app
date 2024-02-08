@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
@@ -12,37 +13,98 @@ class _NotesScreenState extends State<NotesScreen> {
     'Note 1: This is the first note',
     'Note 2: This is the second note',
     'Note 3: This is the third note',
+
   ];
+
+  void _addNote() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NoteEditorScreen(),
+      ),
+    ).then((newNote) {
+      if (newNote != null) {
+        setState(() {
+          notes.add(newNote);
+        });
+      }
+    });
+  }
+
+  void _editNote(int index) {
+    TextEditingController titleController = TextEditingController(text: notes[index].split(':')[0]);
+    TextEditingController bodyController = TextEditingController(text: notes[index].split(':')[1]);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NoteEditorScreen(titleController: titleController, bodyController: bodyController),
+      ),
+    ).then((editedNote) {
+      if (editedNote != null) {
+        setState(() {
+          notes[index] = editedNote;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notes'),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple[400],
+        elevation: 0,
       ),
-      body: ListView.builder(
-        itemCount: notes.length,
-        itemBuilder: (context, index) {
-          final note = notes[index];
-          return Card(
-            elevation: 3.0,
-            margin: const EdgeInsets.symmetric(vertical: 10.0),
-            child: ListTile(
-              title: Text(
-                note,
-                style: const TextStyle(fontSize: 18.0),
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  setState(() {
-                    notes.removeAt(index);
-                  });
-                },
-              ),
-            ),
-          );
-        },
+      body: Stack(
+        children: [
+          ListView.builder(
+            itemCount: notes.length,
+            itemBuilder: (context, index) {
+              final note = notes[index];
+              return ListTile(
+                title: Card(
+                  elevation: 3.0,
+                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            note.split(':')[0],
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.edit),
+                          onPressed: () {
+                            _editNote(index);
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            setState(() {
+                              notes.removeAt(index);
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -52,41 +114,59 @@ class _NotesScreenState extends State<NotesScreen> {
       ),
     );
   }
+}
 
-  void _addNote() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        TextEditingController controller = TextEditingController();
+class NoteEditorScreen extends StatelessWidget {
+  final TextEditingController? titleController;
+  final TextEditingController? bodyController;
 
-        return AlertDialog(
-          title: const Text('Add Note'),
-          content: TextField(
-            controller: controller,
-            decoration: const InputDecoration(hintText: 'Enter your note'),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
+  const NoteEditorScreen({Key? key, this.titleController, this.bodyController}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Note Editor'),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        backgroundColor: Colors.deepPurple[400],
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: titleController,
+              decoration: const InputDecoration(
+                hintText: 'Title',
+                border: InputBorder.none,
+              ),
+              keyboardType: TextInputType.text,
+              style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  String note = controller.text;
-                  if (note.isNotEmpty) {
-                    notes.add(note);
-                  }
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Add'),
+            const SizedBox(height: 16.0),
+            Expanded(
+              child: TextField(
+                controller: bodyController,
+                decoration: const InputDecoration(
+                  hintText: 'Write your note...',
+                  border: InputBorder.none,
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                style: const TextStyle(fontSize: 16.0),
+              ),
             ),
           ],
-        );
-      },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pop('${titleController?.text ?? ''}: ${bodyController?.text ?? ''}');
+        },
+        child: const Icon(Icons.save),
+      ),
     );
   }
 }

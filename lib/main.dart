@@ -12,10 +12,14 @@ class TodoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Todo List',
+      themeMode: ThemeMode.system,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
       home: const HomeScreen(),
       routes: {
         '/home': (context) => const HomeScreen(),

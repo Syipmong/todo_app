@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({Key? key}) : super(key: key);
@@ -22,17 +23,17 @@ class _ToDoScreenState extends State<ToDoScreen> {
         TextEditingController controller = TextEditingController();
 
         return AlertDialog(
-          title: Text('Add Todo'),
+          title: const Text('Add Todo'),
           content: TextField(
             controller: controller,
-            decoration: InputDecoration(hintText: 'Enter your todo'),
+            decoration: const InputDecoration(hintText: 'Enter your todo'),
           ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -44,7 +45,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                 });
                 Navigator.of(context).pop();
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
           ],
         );
@@ -52,21 +53,80 @@ class _ToDoScreenState extends State<ToDoScreen> {
     );
   }
 
-  // Function to delete a todo
   void _deleteTodo(int index) {
     setState(() {
       todos.removeAt(index);
     });
   }
 
+  // Function to edit a todo
+  void _editTodo(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        TextEditingController controller = TextEditingController();
+        controller.text = todos[index].title;
+
+        return AlertDialog(
+          title: const Text('Edit Todo'),
+          content: TextField(
+            controller: controller,
+            decoration: const InputDecoration(hintText: 'Enter your todo'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  String newTitle = controller.text;
+                  if (newTitle.isNotEmpty) {
+                    todos[index].title = newTitle;
+                  }
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todo List'),
+        title: const Text(
+          'Todo List',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple[400],
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // search functionality
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.filter_alt),
+            onPressed: () {
+              //filter functionality
+            },
+          ),
+        ],
       ),
       body: Container(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView.builder(
           itemCount: todos.length,
           itemBuilder: (context, index) {
@@ -79,12 +139,12 @@ class _ToDoScreenState extends State<ToDoScreen> {
               background: Container(
                 color: Colors.red,
                 alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(right: 20.0),
-                child: Icon(Icons.delete, color: Colors.white),
+                padding: const EdgeInsets.only(right: 20.0),
+                child: const Icon(Icons.delete, color: Colors.white),
               ),
               child: Card(
                 elevation: 3.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0),
+                margin: const EdgeInsets.symmetric(vertical: 10.0),
                 child: ListTile(
                   title: Text(
                     todo.title,
@@ -103,6 +163,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
                       });
                     },
                   ),
+                  onTap: () {
+                    _editTodo(index);
+                  },
                 ),
               ),
             );
@@ -111,18 +174,22 @@ class _ToDoScreenState extends State<ToDoScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addTodo,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
+        tooltip: 'Add Todo',
       ),
     );
   }
 }
 
 class Todo {
-  final String title;
+  String title;
   bool isCompleted;
+  String category;
 
   Todo({
     required this.title,
     this.isCompleted = false,
+    this.category = 'Uncategorized',
   });
 }
+
