@@ -25,24 +25,24 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
-#      - name: Test
-#        run: flutter test
-
       - name: Build APK
         run: flutter build apk
+
+      # Set execute permission for the script
+      - name: Set execute permission for script
+        run: chmod +x generate_release_body.sh
 
       # Generate Release Body
       - name: Generate Release Body
         id: generate_release_body
         run: |
           ./generate_release_body.sh > release_body.txt
-          
-          # Generate Release Files
+
+      # Generate Release Files
       - name: Generate Release Files
         id: generate_release_files
         run: |
           cp build/app/outputs/flutter-apk/app-release.apk release_files/app-release.apk
-    
 
       # Create GitHub Release
       - name: Create Release
