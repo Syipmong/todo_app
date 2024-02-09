@@ -174,8 +174,8 @@ class _ToDoScreenState extends State<ToDoScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addTodo,
-        child: const Icon(Icons.add),
         tooltip: 'Add Todo',
+        child: const Icon(Icons.add),
       ),
     );
   }
