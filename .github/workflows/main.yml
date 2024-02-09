@@ -28,21 +28,20 @@ jobs:
       - name: Build APK
         run: flutter build apk
 
-      # Set execute permission for the script
-      - name: Set execute permission for script
-        run: chmod +x generate_release_body.sh
-
       # Generate Release Body
       - name: Generate Release Body
         id: generate_release_body
         run: |
+          chmod +x generate_release_body.sh
           ./generate_release_body.sh > release_body.txt
 
-      # Generate Release Files
-      - name: Generate Release Files
-        id: generate_release_files
-        run: |
-          cp build/app/outputs/flutter-apk/app-release.apk release_files/app-release.apk
+      # Create directory for release files
+      - name: Create Release Files Directory
+        run: mkdir -p release_files
+
+      # Copy APK file to release_files directory
+      - name: Copy APK to Release Files Directory
+        run: cp build/app/outputs/flutter-apk/app-release.apk release_files/app-release.apk
 
       # Create GitHub Release
       - name: Create Release
@@ -53,5 +52,5 @@ jobs:
           release: false
           title: Release ${{ github.run_number }}
           files: |
-            build/app/outputs/flutter-apk/app-release.apk release_files/app-release.apk
+            release_files/app-release.apk
           body_path: release_body.txt
