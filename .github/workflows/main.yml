@@ -46,7 +46,7 @@ jobs:
 
       # Create GitHub Release
       - name: Create Release
-        uses: marination/action-automatic-releases@latest
+        uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ secrets.GH_TOKEN }}
           automatic_release_tag: v${{ github.run_number }}
