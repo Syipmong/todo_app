@@ -55,7 +55,7 @@ android {
         release {
             keyAlias 'my-key-alias'
             keyPassword 'yipmong'
-            storeFile file('my-release-key.keystore')
+            storeFile file('app/my-release-key.keystore')
             storePassword 'yipmong'
         }
     }
