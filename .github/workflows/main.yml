@@ -30,3 +30,28 @@ jobs:
 
       - name: Build APK
         run: flutter build apk
+
+      # Generate Release Body
+      - name: Generate Release Body
+        id: generate_release_body
+        run: |
+          ./generate_release_body.sh > release_body.txt
+          
+          # Generate Release Files
+      - name: Generate Release Files
+        id: generate_release_files
+        run: |
+          cp build/app/outputs/flutter-apk/app-release.apk release_files/app-release.apk
+    
+
+      # Create GitHub Release
+      - name: Create Release
+        uses: marination/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          automatic_release_tag: v${{ github.run_number }}
+          release: false
+          title: Release ${{ github.run_number }}
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk release_files/app-release.apk
+          body_path: release_body.txt
