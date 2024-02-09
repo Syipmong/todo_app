@@ -1,3 +1,5 @@
+// NoteScreen is the main screen of the app. It displays the list of notes and allows the user to add, edit, and delete notes.
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
