@@ -9,7 +9,7 @@ def get_latest_release():
     if response.status_code == 200:
             release_data = response.json()
             return release_data
-        else:
+    else:
             print(f"Failed to fetch latest release data. Status code: {response.status_code}")
             return None
 
