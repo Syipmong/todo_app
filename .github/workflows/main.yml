@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Flutter Clean
+        run: flutter clean
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -28,6 +31,9 @@ jobs:
       # Build APK
       - name: Build APK
         run: flutter build apk
+
+      - name: Build App Bundle
+        run: flutter build aab
 
       # Generate Release Body
       - name: Generate Release Body
