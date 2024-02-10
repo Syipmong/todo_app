@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({super.key});
 
@@ -10,9 +11,18 @@ class ToDoScreen extends StatefulWidget {
 
 class _ToDoScreenState extends State<ToDoScreen> {
   List<Todo> todos = [
-    Todo(title: 'Learn Flutter'),
-    Todo(title: 'Build Flutter App'),
-    Todo(title: 'Deploy Flutter'),
+    Todo(
+      title: 'Learn Flutter',
+      creationDate: DateTime.now(),
+    ),
+    Todo(
+      title: 'Build Flutter App',
+      creationDate: DateTime.now(),
+    ),
+    Todo(
+      title: 'Deploy Flutter',
+      creationDate: DateTime.now(),
+    ),
   ];
 
   // Function to add a new todo
@@ -40,7 +50,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
                 setState(() {
                   String title = controller.text;
                   if (title.isNotEmpty) {
-                    todos.add(Todo(title: title));
+                    todos.add(Todo(
+                      title: title,
+                      creationDate: DateTime.now(),
+                    ));
                   }
                 });
                 Navigator.of(context).pop();
@@ -102,30 +115,30 @@ class _ToDoScreenState extends State<ToDoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple[400],
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              // search functionality
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_alt),
-            onPressed: () {
-              // filter functionality
-            },
-          ),
-        ],
-        title: const Row(
-          children: [
-            Icon(FontAwesomeIcons.listCheck),
-            SizedBox(width: 8,),
-            Text('To Do'),
+          centerTitle: true,
+          backgroundColor: Colors.deepPurple[400],
+          elevation: 0,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                // search functionality
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.filter_alt),
+              onPressed: () {
+                // filter functionality
+              },
+            ),
           ],
-        )
+          title: const Row(
+            children: [
+              Icon(FontAwesomeIcons.listCheck),
+              SizedBox(width: 8,),
+              Text('To Do'),
+            ],
+          )
       ),
       body: todos.isEmpty
           ? Center(
@@ -165,20 +178,47 @@ class _ToDoScreenState extends State<ToDoScreen> {
                     elevation: 3.0,
                     margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: ListTile(
-                      title: Text(
-                        todo.title,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          decoration: todo.isCompleted
-                              ? TextDecoration.lineThrough
-                              : null,
-                        ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            todo.title,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.deepPurple,
+                              decoration: todo.isCompleted
+                                  ? TextDecoration.lineThrough
+                                  : null,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Created: ${todo.creationDate.toString().split('.')[0]}',
+                            style: const TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          if (todo.isCompleted && todo.completionDate != null)
+                            Text(
+                              'Completed: ${todo.completionDate}',
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.grey,
+                              ),
+                            ),
+                        ],
                       ),
                       leading: Checkbox(
                         value: todo.isCompleted,
                         onChanged: (bool? value) {
                           setState(() {
                             todo.isCompleted = value!;
+                            if (value == true) {
+                              todo.completionDate = DateTime.now();
+                            } else {
+                              todo.completionDate = null;
+                            }
                           });
                         },
                       ),
@@ -224,9 +264,13 @@ class _ToDoScreenState extends State<ToDoScreen> {
 class Todo {
   String title;
   bool isCompleted;
+  DateTime creationDate;
+  DateTime? completionDate;
 
   Todo({
     required this.title,
     this.isCompleted = false,
+    required this.creationDate,
+    this.completionDate,
   });
 }
