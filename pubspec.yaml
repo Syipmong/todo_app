@@ -51,7 +51,7 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/appicons/android/play_store_512.png"
+  image_path: "assets/appicons/android/icon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -75,6 +75,8 @@ flutter:
   assets:
     - assets/appicons/
     - assets/images/
+    - assets/images/icon.png
+    - assets/images/note.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

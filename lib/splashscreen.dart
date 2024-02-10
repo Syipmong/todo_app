@@ -20,15 +20,15 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-                "assets/appicons/android/play_store_512.png",
+                "assets/images/icon.png",
               width: 100,
               height: 100,
             ),
             const SizedBox(height: 20,),
-            const Text(
-                "MyNote",
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.deepPurple),
-            ),
+            // const Text(
+            //     "MyNote",
+            //   style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+            // ),
 
           ],
         ),
