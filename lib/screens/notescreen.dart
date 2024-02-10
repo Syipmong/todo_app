@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NotesScreen extends StatefulWidget {
-  const NotesScreen({Key? key}) : super(key: key);
+  const NotesScreen({super.key});
 
   @override
   State<NotesScreen> createState() => _NotesScreenState();
@@ -135,7 +135,7 @@ class NoteEditorScreen extends StatelessWidget {
   final TextEditingController? titleController;
   final TextEditingController? bodyController;
 
-  const NoteEditorScreen({Key? key, this.titleController, this.bodyController}) : super(key: key);
+  const NoteEditorScreen({super.key, this.titleController, this.bodyController});
 
   @override
   Widget build(BuildContext context) {

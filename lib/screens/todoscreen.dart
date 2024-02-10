@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ToDoScreen extends StatefulWidget {
-  const ToDoScreen({Key? key}) : super(key: key);
+  const ToDoScreen({super.key});
 
   @override
   State<ToDoScreen> createState() => _ToDoScreenState();
@@ -12,7 +12,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
   List<Todo> todos = [
     Todo(title: 'Learn Flutter'),
     Todo(title: 'Build Flutter App'),
-    Todo(title: 'Deploy Flut'),
+    Todo(title: 'Deploy Flutter'),
   ];
 
   // Function to add a new todo
