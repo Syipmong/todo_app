@@ -4,7 +4,7 @@ import 'package:todo_app/screens/todoscreen.dart';
 import 'package:todo_app/screens/notescreen.dart'; // Import the NotesScreen
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
