@@ -63,4 +63,6 @@ jobs:
           title: Release ${{ github.run_number }}
           files: |
             release_files/app-release.apk
+            release_files/app-release.aab
+
           body_path: release_body.txt
