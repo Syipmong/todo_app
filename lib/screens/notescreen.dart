@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
@@ -52,7 +53,13 @@ class _NotesScreenState extends State<NotesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes'),
+        title: const Row(
+          children: [
+            Icon(FontAwesomeIcons.penToSquare),
+            SizedBox(width: 8,),
+            Text('Notes')
+          ],
+        ),
         systemOverlayStyle: SystemUiOverlayStyle.light,
         centerTitle: true,
         backgroundColor: Colors.deepPurple[400],

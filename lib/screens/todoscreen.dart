@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({Key? key}) : super(key: key);
@@ -118,10 +119,13 @@ class _ToDoScreenState extends State<ToDoScreen> {
             },
           ),
         ],
-        title: const Text(
-          'Todo List',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
+        title: const Row(
+          children: [
+            Icon(FontAwesomeIcons.listCheck),
+            SizedBox(width: 8,),
+            Text('To Do')
+          ],
+        )
       ),
       body: todos.isEmpty
           ? Center(
