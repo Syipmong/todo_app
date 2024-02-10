@@ -51,7 +51,7 @@ jobs:
         run: cp build/app/outputs/flutter-apk/app-release.apk release_files/app-release.apk
 
       - name: Copy AAB to Release Files Directory
-        run: cp build\app\outputs\bundle\release\app-release.aab release_files/app-release.aab
+        run: cp build/app/outputs/bundle/release/app-release.aab release_files/app-release.aab
 
       # Create GitHub Release
       - name: Create Release
@@ -63,6 +63,6 @@ jobs:
           title: Release ${{ github.run_number }}
           files: |
             release_files/app-release.apk
-            release_files/app-release.aab
+            
 
           body_path: release_body.txt
