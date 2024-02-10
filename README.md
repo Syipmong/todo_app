@@ -6,6 +6,8 @@ MyNote is a simple application developed using Flutter that combines note-taking
 
 ## Features
 
+Key Features are
+
 ### MyNote
 
 - Create new notes with titles and content.
