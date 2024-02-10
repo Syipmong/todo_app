@@ -1,5 +1,3 @@
-// This file contains the code for the ToDoScreen
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,11 +17,11 @@ class _ToDoScreenState extends State<ToDoScreen> {
 
   // Function to add a new todo
   void _addTodo() {
+    TextEditingController controller = TextEditingController();
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        TextEditingController controller = TextEditingController();
-
         return AlertDialog(
           title: const Text('Add Todo'),
           content: TextField(
@@ -63,12 +61,12 @@ class _ToDoScreenState extends State<ToDoScreen> {
 
   // Function to edit a todo
   void _editTodo(int index) {
+    TextEditingController controller = TextEditingController();
+    controller.text = todos[index].title;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        TextEditingController controller = TextEditingController();
-        controller.text = todos[index].title;
-
         return AlertDialog(
           title: const Text('Edit Todo'),
           content: TextField(
@@ -104,7 +102,6 @@ class _ToDoScreenState extends State<ToDoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
         centerTitle: true,
         backgroundColor: Colors.deepPurple[400],
         elevation: 0,
@@ -118,7 +115,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
           IconButton(
             icon: const Icon(Icons.filter_alt),
             onPressed: () {
-              //filter functionality
+              // filter functionality
             },
           ),
         ],
@@ -127,52 +124,86 @@ class _ToDoScreenState extends State<ToDoScreen> {
           style: TextStyle(color: Colors.white, fontSize: 24),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20.0),
-        child: ListView.builder(
-          itemCount: todos.length,
-          itemBuilder: (context, index) {
-            final todo = todos[index];
-            return Dismissible(
-              key: Key(todo.title),
-              onDismissed: (direction) {
-                _deleteTodo(index);
-              },
-              background: Container(
-                color: Colors.red,
-                alignment: Alignment.centerRight,
-                padding: const EdgeInsets.only(right: 20.0),
-                child: const Icon(Icons.delete, color: Colors.white),
-              ),
-              child: Card(
-                elevation: 3.0,
-                margin: const EdgeInsets.symmetric(vertical: 10.0),
-                child: ListTile(
-                  title: Text(
-                    todo.title,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      decoration: todo.isCompleted
-                          ? TextDecoration.lineThrough
-                          : null,
+      body: todos.isEmpty
+          ? Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'No todos yet!',
+              style: TextStyle(fontSize: 18),
+            ),
+            ElevatedButton(
+              onPressed: _addTodo,
+              child: const Text('Add Todo'),
+            ),
+          ],
+        ),
+      )
+          : Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: todos.length,
+              itemBuilder: (context, index) {
+                final todo = todos[index];
+                return Dismissible(
+                  key: Key(todo.title),
+                  onDismissed: (direction) {
+                    _deleteTodo(index);
+                  },
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: const Icon(Icons.delete, color: Colors.white),
+                  ),
+                  child: Card(
+                    elevation: 3.0,
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: ListTile(
+                      title: Text(
+                        todo.title,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          decoration: todo.isCompleted
+                              ? TextDecoration.lineThrough
+                              : null,
+                        ),
+                      ),
+                      leading: Checkbox(
+                        value: todo.isCompleted,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            todo.isCompleted = value!;
+                          });
+                        },
+                      ),
+                      onTap: () {
+                        _editTodo(index);
+                      },
                     ),
                   ),
-                  leading: Checkbox(
-                    value: todo.isCompleted,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        todo.isCompleted = value!;
-                      });
-                    },
-                  ),
-                  onTap: () {
-                    _editTodo(index);
-                  },
+                );
+              },
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            color: Colors.grey[300],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.check_circle, color: Colors.green),
+                const SizedBox(width: 8),
+                Text(
+                  '${todos.where((todo) => !todo.isCompleted).length} Remaining',
+                  style: const TextStyle(fontSize: 16),
                 ),
-              ),
-            );
-          },
-        ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addTodo,
@@ -186,12 +217,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
 class Todo {
   String title;
   bool isCompleted;
-  String category;
 
   Todo({
     required this.title,
     this.isCompleted = false,
-    this.category = 'Uncategorized',
   });
 }
-
