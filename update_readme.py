@@ -6,8 +6,12 @@ import json
 def get_latest_release():
     url = "https://api.github.com/repos/Syipmong/todo_app/releases/latest"
     response = requests.get(url)
-    release_data = response.json()
-    return release_data
+    if response.status_code == 200:
+            release_data = response.json()
+            return release_data
+        else:
+            print(f"Failed to fetch latest release data. Status code: {response.status_code}")
+            return None
 
 def update_readme(release_data):
     # Format release data in Markdown
