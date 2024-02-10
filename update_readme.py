@@ -4,7 +4,7 @@ import requests
 import json
 
 def get_latest_release():
-    url = "https://api.github.com/repos/syipmong/todo_app/releases/latest"
+    url = "https://api.github.com/repos/Syipmong/todo_app/releases/latest"
     response = requests.get(url)
     release_data = response.json()
     return release_data
