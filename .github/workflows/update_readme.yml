@@ -22,5 +22,6 @@ jobs:
         run: |
           git config --global user.name 'Syipmon'
           git config --global user.email 'Syipmong5@gmail.com'
+          
           git commit -am "Updated README with latest release"
           git push

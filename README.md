@@ -1,3 +1,5 @@
+[![Flutter Build](https://github.com/Syipmong/todo_app/actions/workflows/main.yml/badge.svg)](https://github.com/Syipmong/todo_app/actions/workflows/main.yml)
+
 # MyNote
 
 MyNote is a simple application developed using Flutter that combines note-taking and task management functionalities in one app.
