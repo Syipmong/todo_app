@@ -25,16 +25,6 @@ Key Features are
 - Dark mode support.
 - User-friendly interface.
 
-## Screenshots
-
-<img src="readme/images/Screenshot_20240210-090459.jpg" alt="Screenshot 1" width="400"/> <img src="readme/images/Screenshot_20240210-090510.jpg" alt="Screenshot 2" width="400"/>
-<img src="readme/images/Screenshot_20240210-090518.jpg" alt="Screenshot 3" width="400"/> <img src="readme/images/Screenshot_20240210-101219.jpg" alt="Screenshot 3" width="400"/>
-<img src="readme/images/Screenshot_20240210-101225.jpg" alt="Screenshot 3" width="400"/> <img src="readme/images/Screenshot_20240210-101258.jpg" alt="Screenshot 3" width="400"/>
-
-
-
-
-
 
 ## Getting Started
 
@@ -59,3 +49,13 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+
+## Screenshots
+
+<img src="readme/images/Screenshot_20240210-090459.jpg" alt="Screenshot 1" width="400"/> <img src="readme/images/Screenshot_20240210-090510.jpg" alt="Screenshot 2" width="400"/>
+<img src="readme/images/Screenshot_20240210-090518.jpg" alt="Screenshot 3" width="400"/> <img src="readme/images/Screenshot_20240210-101219.jpg" alt="Screenshot 3" width="400"/>
+<img src="readme/images/Screenshot_20240210-101225.jpg" alt="Screenshot 3" width="400"/> <img src="readme/images/Screenshot_20240210-101258.jpg" alt="Screenshot 3" width="400"/>
+
+
