@@ -16,6 +16,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
       creationDate: DateTime.now(),
     ),
     Todo(
+      title: 'Tap on a todo to edit it',
+      creationDate: DateTime.now(),
+    ),
+    Todo(
       title: 'Swipe left or right to delete',
       creationDate: DateTime.now(),
     ),
@@ -24,6 +28,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
       creationDate: DateTime.now(),
       isCompleted: true,
     ),
+
   ];
 
   // Function to add a new todo
