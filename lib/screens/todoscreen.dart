@@ -11,8 +11,8 @@ class ToDoScreen extends StatefulWidget {
 class _ToDoScreenState extends State<ToDoScreen> {
   List<Todo> todos = [
     Todo(title: 'Learn Flutter'),
-    Todo(title: 'Build Todo App'),
-    Todo(title: 'Deploy to App Store'),
+    Todo(title: 'Build Flutter App'),
+    Todo(title: 'Deploy Flut'),
   ];
 
   // Function to add a new todo
