@@ -27,6 +27,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
       title: 'Check the todo checkbox to mark complete',
       creationDate: DateTime.now(),
       isCompleted: true,
+      completionDate: DateTime.utc(2024,01,24,4,11,48)
     ),
 
   ];

@@ -1,4 +1,4 @@
-[![MyNote Build](https://github.com/Syipmong/todo_app/actions/workflows/main.yml/badge.svg)](https://github.com/Syipmong/todo_app/actions/workflows/main.yml)
+[![Flutter Build](https://github.com/Syipmong/todo_app/actions/workflows/main.yml/badge.svg)](https://github.com/Syipmong/todo_app/actions/workflows/main.yml)
 
 # MyNote
 
