@@ -1,26 +1,26 @@
-name: Update README with Latest Release
+name: Update README with latest release
 
 on:
   release:
     types: [published]
 
 jobs:
-  update_readme:
+  update_readme_job:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+      - name: Set executable permission
+        run: chmod +x update_readme.py
 
-      - name: Install dependencies
-        run: pip install requests
+      - name: Execute Python script to update README
+        run: ./update_readme.py
 
-      - name: Fetch latest release and update README
-        run: python update_readme.py
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit changes to README
+        run: |
+          git config --global user.name 'Yipmong Said'
+          git config --global user.email 'syipmong5@gmail.com'
+          git commit -am "Updated README with latest release"
+          git push
