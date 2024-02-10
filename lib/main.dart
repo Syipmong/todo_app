@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home.dart';
+import 'package:todo_app/splashscreen.dart';
 
 void main() {
   runApp(const TodoApp());
@@ -20,7 +21,7 @@ class TodoApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
       routes: {
         '/home': (context) => const HomeScreen(),
       }

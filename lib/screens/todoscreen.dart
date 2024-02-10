@@ -123,7 +123,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
           children: [
             Icon(FontAwesomeIcons.listCheck),
             SizedBox(width: 8,),
-            Text('To Do')
+            Text('To Do'),
           ],
         )
       ),
