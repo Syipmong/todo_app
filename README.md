@@ -23,6 +23,14 @@ MyNote is a simple application developed using Flutter that combines note-taking
 
 ## Screenshots
 
+## Screenshots
+
+![Screenshot 1](readme/images/Screenshot_20240210-090459.jpg)
+![Screenshot 2](readme/images/Screenshot_20240210-090510.jpg)
+![Screenshot 2](readme/images/Screenshot_20240210-090518.jpg)
+
+
+
 
 
 ## Getting Started
