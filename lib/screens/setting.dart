@@ -6,36 +6,20 @@ class SettingsScreen extends StatefulWidget {
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
-
 class _SettingsScreenState extends State<SettingsScreen> {
+  ThemeMode _themeMode = ThemeMode.system;
+  Brightness _statusBarBrightness = Brightness.light;
+  bool _notificationsEnabled = true;
+  bool _useCustomTheme = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
       ),
-      body: const SettingsContent(),
-    );
-  }
-}
-
-class SettingsContent extends StatefulWidget {
-  const SettingsContent({super.key});
-
-  @override
-  SettingsContentState createState() => SettingsContentState();
-}
-
-class SettingsContentState extends State<SettingsContent> {
-  ThemeMode _themeMode = ThemeMode.system;
-  Brightness _statusBarBrightness = Brightness.light;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
         children: [
           const Text(
             'Theme',
@@ -64,6 +48,47 @@ class SettingsContentState extends State<SettingsContent> {
                 });
               },
             ),
+          ),
+          ListTile(
+            title: const Text('System Theme'),
+            leading: Radio(
+              value: ThemeMode.system,
+              groupValue: _themeMode,
+              onChanged: (value) {
+                setState(() {
+                  _themeMode = value as ThemeMode;
+                });
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Customization',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SwitchListTile(
+            title: const Text('Custom Theme'),
+            value: _useCustomTheme,
+            onChanged: (value) {
+              setState(() {
+                _useCustomTheme = value;
+              });
+            },
+          ),
+
+          const SizedBox(height: 20),
+          const Text(
+            'Notifications',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SwitchListTile(
+            title: const Text('Enable Notifications'),
+            value: _notificationsEnabled,
+            onChanged: (value) {
+              setState(() {
+                _notificationsEnabled = value;
+              });
+            },
           ),
           const SizedBox(height: 20),
           const Text(
