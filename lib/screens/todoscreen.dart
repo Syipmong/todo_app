@@ -189,7 +189,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
           ),
           Container(
             padding: const EdgeInsets.all(8.0),
-            color: Colors.grey[300],
+            color: Theme.of(context).brightness == Brightness.light ? Colors.grey[300] : Colors.grey[700], // Adjust color based on theme brightness
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -197,11 +197,15 @@ class _ToDoScreenState extends State<ToDoScreen> {
                 const SizedBox(width: 8),
                 Text(
                   '${todos.where((todo) => !todo.isCompleted).length} Remaining',
-                  style: const TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white, // Adjust text color based on theme brightness
+                  ),
                 ),
               ],
             ),
           ),
+
         ],
       ),
       floatingActionButton: FloatingActionButton(

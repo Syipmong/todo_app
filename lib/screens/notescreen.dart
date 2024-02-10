@@ -1,5 +1,3 @@
-// NoteScreen is the main screen of the app. It displays the list of notes and allows the user to add, edit, and delete notes.
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,7 +13,6 @@ class _NotesScreenState extends State<NotesScreen> {
     'Note 1: This is the first note',
     'Note 2: This is the second note',
     'Note 3: This is the third note',
-
   ];
 
   void _addNote() {
@@ -60,58 +57,67 @@ class _NotesScreenState extends State<NotesScreen> {
         centerTitle: true,
         backgroundColor: Colors.deepPurple[400],
         elevation: 0,
-      ),
-      body: Stack(
-        children: [
-          ListView.builder(
-            itemCount: notes.length,
-            itemBuilder: (context, index) {
-              final note = notes[index];
-              return ListTile(
-                title: Card(
-                  elevation: 3.0,
-                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            note.split(':')[0],
-                            style: const TextStyle(fontSize: 16.0),
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {
-                            _editNote(index);
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () {
-                            setState(() {
-                              notes.removeAt(index);
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // Implement search functionality
             },
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _addNote();
+      body: notes.isEmpty
+          ? const Center(
+        child: Text(
+          'No notes yet. Tap the + button to add a new note.',
+          textAlign: TextAlign.center,
+        ),
+      )
+          : ListView.builder(
+        itemCount: notes.length,
+        itemBuilder: (context, index) {
+          final note = notes[index];
+          return ListTile(
+            title: Card(
+              elevation: 3.0,
+              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        note.split(':')[0],
+                        style: const TextStyle(fontSize: 16.0),
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        _editNote(index);
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        setState(() {
+                          notes.removeAt(index);
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addNote,
         child: const Icon(Icons.add),
       ),
     );
@@ -129,7 +135,6 @@ class NoteEditorScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Note Editor'),
-        systemOverlayStyle: SystemUiOverlayStyle.light,
         backgroundColor: Colors.deepPurple[400],
         elevation: 0,
       ),
