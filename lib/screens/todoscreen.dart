@@ -12,16 +12,17 @@ class ToDoScreen extends StatefulWidget {
 class _ToDoScreenState extends State<ToDoScreen> {
   List<Todo> todos = [
     Todo(
-      title: 'Learn Flutter',
+      title: 'Add more Todo by pressing + button',
       creationDate: DateTime.now(),
     ),
     Todo(
-      title: 'Build Flutter App',
+      title: 'Swipe left or right to delete',
       creationDate: DateTime.now(),
     ),
     Todo(
-      title: 'Deploy Flutter',
+      title: 'Check the todo checkbox to mark complete',
       creationDate: DateTime.now(),
+      isCompleted: true,
     ),
   ];
 
