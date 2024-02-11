@@ -1,6 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({super.key});
@@ -9,6 +9,7 @@ class ToDoScreen extends StatefulWidget {
   State<ToDoScreen> createState() => _ToDoScreenState();
 }
 
+final player = AudioPlayer();
 class _ToDoScreenState extends State<ToDoScreen> {
   List<Todo> todos = [
     Todo(
@@ -76,6 +77,12 @@ class _ToDoScreenState extends State<ToDoScreen> {
   void _deleteTodo(int index) {
     setState(() {
       todos.removeAt(index);
+    });
+  }
+
+  void _completeTodo() {
+    setState(() async {
+      await player.play('assets/sounds/' as Source);
     });
   }
 
