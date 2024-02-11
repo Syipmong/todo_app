@@ -80,11 +80,11 @@ class _ToDoScreenState extends State<ToDoScreen> {
     });
   }
 
-  void _completeTodo() {
-    setState(() async {
-      await player.play('assets/sounds/' as Source);
-    });
-  }
+  // void _completeTodo() {
+  //   setState(() async {
+  //     await player.play('assets/sounds/' as Source);
+  //   });
+  // }
 
   // Function to edit a todo
   void _editTodo(int index) {
