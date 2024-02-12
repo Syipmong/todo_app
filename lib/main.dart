@@ -24,6 +24,7 @@ class TodoApp extends StatelessWidget {
       home: const SplashScreen(),
       routes: {
         '/home': (context) => const HomeScreen(),
+
       }
     );
   }

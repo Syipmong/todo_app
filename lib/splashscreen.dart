@@ -20,16 +20,15 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-                "assets/images/icon.png",
-              width: 100,
-              height: 100,
-            ),
-            const SizedBox(height: 20,),
+                  "assets/images/icon-transparent.png",
+                width: 100,
+                height: 100,
+              ),
+            // const SizedBox(height: 20,),
             const Text(
-                "MyNote",
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+                "...Simplifying your workflows",
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.deepPurpleAccent,),
             ),
-            const Text('...Simplifying your workflows'),
           ],
         ),
       ),
