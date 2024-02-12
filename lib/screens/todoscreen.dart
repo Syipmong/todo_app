@@ -10,6 +10,7 @@ class ToDoScreen extends StatefulWidget {
 }
 
 final player = AudioPlayer();
+
 class _ToDoScreenState extends State<ToDoScreen> {
   List<Todo> todos = [
     Todo(
@@ -28,12 +29,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
       title: 'Check the todo checkbox to mark complete',
       creationDate: DateTime.now(),
       isCompleted: true,
-      completionDate: DateTime.utc(2024,01,24,4,11,48)
+      completionDate: DateTime.utc(2024, 01, 24, 4, 11, 48),
     ),
-
   ];
 
-  // Function to add a new todo
   void _addTodo() {
     TextEditingController controller = TextEditingController();
 
@@ -80,13 +79,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
     });
   }
 
-  // void _completeTodo() {
-  //   setState(() async {
-  //     await player.play('assets/sounds/' as Source);
-  //   });
+  // void _completeTodo(int index) async {
+  //   await player.play('assets/sounds/tink.mp3' as Source);
   // }
 
-  // Function to edit a todo
   void _editTodo(int index) {
     TextEditingController controller = TextEditingController();
     controller.text = todos[index].title;
@@ -129,30 +125,30 @@ class _ToDoScreenState extends State<ToDoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.deepPurple[400],
-          elevation: 0,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                // search functionality
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.filter_alt),
-              onPressed: () {
-                // filter functionality
-              },
-            ),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple[400],
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // search functionality
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.filter_alt),
+            onPressed: () {
+              // filter functionality
+            },
+          ),
+        ],
+        title: const Row(
+          children: [
+            Icon(FontAwesomeIcons.listCheck),
+            SizedBox(width: 8),
+            Text('To Do'),
           ],
-          title: const Row(
-            children: [
-              Icon(FontAwesomeIcons.listCheck),
-              SizedBox(width: 8,),
-              Text('To Do'),
-            ],
-          )
+        ),
       ),
       body: todos.isEmpty
           ? Center(
@@ -199,7 +195,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                             todo.title,
                             style: TextStyle(
                               fontSize: 18.0,
-                              color: Colors.deepPurple,
+                              color: Colors.deepPurpleAccent,
                               decoration: todo.isCompleted
                                   ? TextDecoration.lineThrough
                                   : null,
@@ -213,9 +209,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
                               color: Colors.grey,
                             ),
                           ),
-                          if (todo.isCompleted && todo.completionDate != null)
+                          if (todo.isCompleted &&
+                              todo.completionDate != null)
                             Text(
-                              'Completed: ${todo.completionDate}',
+                              'Completed: ${todo.completionDate.toString().split('.')[0]}',
                               style: const TextStyle(
                                 fontSize: 14.0,
                                 color: Colors.grey,
@@ -229,6 +226,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                           setState(() {
                             todo.isCompleted = value!;
                             if (value == true) {
+                              // _completeTodo();
                               todo.completionDate = DateTime.now();
                             } else {
                               todo.completionDate = null;
@@ -247,7 +245,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
           ),
           Container(
             padding: const EdgeInsets.all(8.0),
-            color: Theme.of(context).brightness == Brightness.light ? Colors.grey[300] : Colors.grey[700], // Adjust color based on theme brightness
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.grey[300]
+                : Colors.grey[700],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -257,13 +257,14 @@ class _ToDoScreenState extends State<ToDoScreen> {
                   '${todos.where((todo) => !todo.isCompleted).length} Remaining',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white, // Adjust text color based on theme brightness
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.black
+                        : Colors.white,
                   ),
                 ),
               ],
             ),
           ),
-
         ],
       ),
       floatingActionButton: FloatingActionButton(

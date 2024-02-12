@@ -80,6 +80,7 @@ flutter:
     - assets/images/icon.png
     - assets/images/note.svg
     - assets/images/icon-transparent.png
+    - assets/sounds/tink.mp3
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
