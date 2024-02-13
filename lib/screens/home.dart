@@ -33,7 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: UserAccountsDrawerHeader(accountName: Text("John Doe"), accountEmail: Text('User@gmail.com')),
+              child: UserAccountsDrawerHeader(
+                currentAccountPicture: CircleAvatar(
+                  child: FlutterLogo(size: 42.0),
+                ),
+                margin: EdgeInsets.zero,
+                accountName: Text("John Doe"),
+                accountEmail: Text('User@gmail.com'),
+              ),
             ),
             ListTile(
               title: const Text('Item 1'),
