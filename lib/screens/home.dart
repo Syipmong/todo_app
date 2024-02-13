@@ -23,12 +23,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex], // Display the current screen
+      body: _screens[_currentIndex],
+      drawer: const Drawer(
+        child: DrawerHeader(
+            child: DrawerHeader(
+                decoration: BoxDecoration(color: Colors.blue),
+                child: UserAccountsDrawerHeader(accountName: Text('Hello'), accountEmail: Text('Hey')),
+            ),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Update the current index when tapped
+            _currentIndex = index;
           });
         },
         items: const [
