@@ -24,12 +24,30 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_currentIndex],
-      drawer: const Drawer(
-        child: DrawerHeader(
-            child: DrawerHeader(
-                decoration: BoxDecoration(color: Colors.blue),
-                child: UserAccountsDrawerHeader(accountName: Text('Hello'), accountEmail: Text('Hey')),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: UserAccountsDrawerHeader(accountName: Text("John Doe"), accountEmail: Text('User@gmail.com')),
             ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
