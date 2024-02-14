@@ -34,6 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.blue,
               ),
               child: UserAccountsDrawerHeader(
+                otherAccountsPictures: [
+                  CircleAvatar(
+                    child: FlutterLogo(size: 42.0),
+                  ),
+                CircleAvatar(
+                  child: FlutterLogo(size: 42.0),
+                ),
+                ],
                 currentAccountPicture: CircleAvatar(
                   child: FlutterLogo(size: 42.0),
                 ),
