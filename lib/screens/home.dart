@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/auth/login.dart';
 import 'package:todo_app/screens/setting.dart';
 import 'package:todo_app/screens/todoscreen.dart';
 import 'package:todo_app/screens/notescreen.dart'; // Import the NotesScreen
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage('assets/images/avatar.png'),
+                    backgroundImage: AssetImage('assets/images/icon.png'),
                   ),
                   SizedBox(height: 10),
                   Text(
@@ -57,8 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.home),
               title: const Text('Home'),
               onTap: () {
-                // Navigate to home screen
-                Navigator.pop(context);
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),);
               },
             ),
             ListTile(
@@ -75,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 // Navigate to settings screen
                 Navigator.pop(context);
+
               },
             ),
             ListTile(
