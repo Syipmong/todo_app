@@ -27,38 +27,69 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
+          children: [
             const DrawerHeader(
-              padding: EdgeInsets.zero,
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.deepPurple,
               ),
-              child: UserAccountsDrawerHeader(
-                otherAccountsPictures: [
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   CircleAvatar(
-                    child: FlutterLogo(size: 42.0),
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/images/avatar.png'),
                   ),
-                CircleAvatar(
-                  child: FlutterLogo(size: 42.0),
-                ),
+                  SizedBox(height: 10),
+                  Text(
+                    'John Doe',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    "email@flutter.com"
+              ),
                 ],
-                currentAccountPicture: CircleAvatar(
-                  child: FlutterLogo(size: 42.0),
-                ),
-                margin: EdgeInsets.zero,
-                accountName: Text("John Doe"),
-                accountEmail: Text('User@gmail.com'),
               ),
             ),
             ListTile(
-              title: const Text('Item 1'),
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
               onTap: () {
+                // Navigate to home screen
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: const Text('Item 2'),
+              leading: const Icon(Icons.person),
+              title: const Text('Profile'),
               onTap: () {
+                // Navigate to profile screen
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // Navigate to settings screen
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About'),
+              onTap: () {
+                // Navigate to about screen
+                Navigator.pop(context);
+              },
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text('Log out'),
+              onTap: () {
+                // Log out logic
                 Navigator.pop(context);
               },
             ),
