@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/auth/login.dart';
 import 'package:todo_app/screens/setting.dart';
 import 'package:todo_app/screens/todoscreen.dart';
-import 'package:todo_app/screens/notescreen.dart'; // Import the NotesScreen
+import 'package:todo_app/screens/notescreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Text(
-                    "email@flutter.com"
+                    "testemail@flutter.com"
               ),
                 ],
               ),
